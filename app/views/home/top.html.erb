@@ -1,0 +1,12 @@
+<div class="main top-main">
+  <div class="top-message">
+    <h2>つぶやきで、世界はつながる</h2>
+    <p>今の気持ちをつぶやいてみよう！</p>
+  </div>
+  
+  <%= form_with method: :get, local: true do |form| %>
+    <%= form.text_area :search %>
+    <%= form.submit 'Search', name: nil %>
+  <% end %>
+</div>
+
