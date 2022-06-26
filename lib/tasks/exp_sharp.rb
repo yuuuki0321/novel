@@ -25,14 +25,15 @@ def split_word(text)
   word_arr
 end
 
-bayes = NaiveBayes.new(:vrgame, :universe)
+bayes = NaiveBayes.new(:vrgame, :universe, :panic, :fantasy_science, :lowfantasy, :highFantasy)
 
 sub_vrgames = NovelInformation.where(sub_genre: "vrgame")
 sub_universes = NovelInformation.where(sub_genre: "universe")
 sub_panic = NovelInformation.where(sub_genre: "panic")
+sub_fantasy_science = NovelInformation.where(sub_genre: "fantasy_science")
 sub_lowfantasy = NovelInformation.where(sub_genre: "lowfantasy")
 sub_highFantasy = NovelInformation.where(sub_genre: "highFantasy")
-sub_fantasy_science = NovelInformation.where(sub_genre: "fantasy_science")
+
 
 # succerカテゴリの学習
 sub_vrgames.each do |vrgame|
