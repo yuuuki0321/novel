@@ -1,12 +1,18 @@
 <div class="main top-main">
   <div class="top-message">
-    <h2>つぶやきで、世界はつながる</h2>
-    <p>今の気持ちをつぶやいてみよう！</p>
+    <h2>あなたの小説のジャンルを判定しよう</h2>
+    <p>あなたの小説のあらすじを下記のフォームに入力してみよう！</p>
   </div>
   
   <%= form_with method: :get, local: true do |form| %>
-    <%= form.text_area :search %>
-    <%= form.submit 'Search', name: nil %>
+    <%= form.text_area :search, class: 'form-control', size: "120x15" %>
+    <%= form.submit 'ジャンル判定を行う', name: nil %>
   <% end %>
+  
+  
+  <% if @genre.present? %>
+    <strong><%= "あなたが入力したあらすじのジャンルは、" + @genre[0].to_s + "と判定されました！！" %></strong>
+  <% end %>
+
 </div>
 
