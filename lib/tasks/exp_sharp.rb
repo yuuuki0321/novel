@@ -29,6 +29,10 @@ bayes = NaiveBayes.new(:vrgame, :universe)
 
 sub_vrgames = NovelInformation.where(sub_genre: "vrgame")
 sub_universes = NovelInformation.where(sub_genre: "universe")
+sub_panic = NovelInformation.where(sub_genre: "panic")
+sub_lowfantasy = NovelInformation.where(sub_genre: "lowfantasy")
+sub_highFantasy = NovelInformation.where(sub_genre: "highFantasy")
+sub_fantasy_science = NovelInformation.where(sub_genre: "fantasy_science")
 
 # succerカテゴリの学習
 sub_vrgames.each do |vrgame|
@@ -43,6 +47,31 @@ sub_universes.each do |universe|
   # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:universe, *word_array)
 end
+
+sub_panic.each do |panic|
+  word_array = split_word(panic.synopsis)
+  # 単語が複数渡せるので配列を展開した状態で引数に渡す
+  bayes.train(:panic, *word_array)
+end
+
+sub_fantasy_science.each do |fantasy_science|
+  word_array = split_word(fantasy_science.synopsis)
+  # 単語が複数渡せるので配列を展開した状態で引数に渡す
+  bayes.train(:fantasy_science, *word_array)
+end
+
+sub_lowfantasy.each do |lowfantasy|
+  word_array = split_word(lowfantasy.synopsis)
+  # 単語が複数渡せるので配列を展開した状態で引数に渡す
+  bayes.train(:lowfantasy, *word_array)
+end
+
+sub_highFantasy.each do |highFantasy|
+  word_array = split_word(highFantasy.synopsis)
+  # 単語が複数渡せるので配列を展開した状態で引数に渡す
+  bayes.train(:highFantasy, *word_array)
+end
+
 
 # 学習データを保存
 bayes.db_filepath = 'machine_learning.rb'
