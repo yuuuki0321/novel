@@ -31,5 +31,9 @@ group :test do
   gem 'webdrivers',         '4.1.2'
 end
 
+group :production do
+  gem 'pg'
+end
+
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -108,6 +108,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
+    pg (1.4.2)
     public_suffix (4.0.7)
     puma (4.3.6)
       nio4r (~> 2.0)
@@ -213,6 +214,7 @@ DEPENDENCIES
   listen (= 3.7.1)
   naive_bayes
   natto
+  pg
   puma (= 4.3.6)
   rails (= 6.0.4)
   sass-rails (= 5.1.0)
