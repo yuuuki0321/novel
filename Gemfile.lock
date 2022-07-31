@@ -107,8 +107,6 @@ GEM
     minitest (5.16.2)
     msgpack (1.5.4)
     naive_bayes (0.0.3)
-    natto (1.2.0)
-      ffi (>= 1.9.0)
     nio4r (2.5.8)
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
@@ -217,7 +215,6 @@ DEPENDENCIES
   jbuilder (= 2.9.1)
   listen (= 3.7.1)
   naive_bayes
-  natto
   pg
   psych (~> 3.1)
   puma (= 4.3.6)
