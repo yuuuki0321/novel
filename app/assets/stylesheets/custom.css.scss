@@ -1,0 +1,40 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+//.main {
+//  background-image: url("/images/22323001426.jpeg");
+//  height: 800px;
+//  background-size: cover;
+//}
+
+.background {
+  background-image: image-url('22323001426.jpeg');
+}
+
+body {
+  padding-top: 60px;
+  background-image: image-url('22323001426.jpeg'); 
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+  margin: 0 auto;
+  display: block;
+}
+
+.form-control {
+  width: 80%;
+}
+
+.center {
+  text-align: center;
+  color: white;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
