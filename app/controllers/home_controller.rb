@@ -1,11 +1,25 @@
 class HomeController < ApplicationController
   
   def split_word(text)
-    natto = Natto::MeCab.new
+    return if text.blank?
+    uri = URI.parse 'https://jlp.yahooapis.jp/MAService/V2/parse'
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    params = {
+      "id": "1234-1",
+      "jsonrpc": "2.0",
+      "method": "jlp.maservice.parse",
+      "params": {
+        "q": text
+      } 
+    }.to_json
+    headers = {"Content-Type": "application/json","User-Agent": "Yahoo AppID:dj00aiZpPTFqUDJJQjNOMWZMeCZzPWNvbnN1bWVyc2VjcmV0Jng9ODI-"}
+    response = http.post(uri.path, params, headers)
     word_arr = Array.new
-    if text.present?
-      natto.parse(text) do |parsed_word|
-        word_arr << parsed_word.surface if parsed_word.feature.split(',')[0] == "名詞" # 名詞のみ抽出
+    if response.body.present? && response.code == '200'
+      body_json = JSON.parse(response.body)
+      body_json["result"]["tokens"].each do |token|
+        word_arr << token[0] if token[3] == '名詞'
       end
     else
       return nil
