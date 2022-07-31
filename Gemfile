@@ -11,6 +11,7 @@ gem 'bootsnap',   '1.10.3', require: false
 gem 'bootstrap-sass'
 gem 'natto'
 gem 'naive_bayes'
+gem 'mecab', '0.996'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
