@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+ruby "2.6.3"
 
-gem 'rails',      '6.0.4'
+gem 'rails',      '6.1.4'
 gem 'puma',       '4.3.6'
 gem 'sass-rails', '5.1.0'
 gem 'webpacker',  '4.0.7'
@@ -9,8 +10,8 @@ gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.10.3', require: false
 gem 'bootstrap-sass'
-gem 'natto'
 gem 'naive_bayes'
+gem 'psych', '~> 3.1'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
@@ -28,6 +29,10 @@ group :test do
   gem 'capybara',           '3.28.0'
   gem 'selenium-webdriver', '3.142.4'
   gem 'webdrivers',         '4.1.2'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
