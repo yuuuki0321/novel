@@ -35,41 +35,33 @@ sub_lowfantasy = NovelInformation.where(sub_genre: "lowfantasy")
 sub_highFantasy = NovelInformation.where(sub_genre: "highFantasy")
 
 
-# succerカテゴリの学習
 sub_vrgames.each do |vrgame|
   word_array = split_word(vrgame.synopsis)
-  # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:vrgame, *word_array)
 end
 
-# baseballカテゴリの学習
 sub_universes.each do |universe|
   word_array = split_word(universe.synopsis)
-  # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:universe, *word_array)
 end
 
 sub_panic.each do |panic|
   word_array = split_word(panic.synopsis)
-  # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:panic, *word_array)
 end
 
 sub_fantasy_science.each do |fantasy_science|
   word_array = split_word(fantasy_science.synopsis)
-  # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:fantasy_science, *word_array)
 end
 
 sub_lowfantasy.each do |lowfantasy|
   word_array = split_word(lowfantasy.synopsis)
-  # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:lowfantasy, *word_array)
 end
 
 sub_highFantasy.each do |highFantasy|
   word_array = split_word(highFantasy.synopsis)
-  # 単語が複数渡せるので配列を展開した状態で引数に渡す
   bayes.train(:highFantasy, *word_array)
 end
 
