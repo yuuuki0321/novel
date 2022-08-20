@@ -13,7 +13,7 @@ class HomeController < ApplicationController
         "q": text
       } 
     }.to_json
-    headers = {"Content-Type": "application/json","User-Agent": "Yahoo AppID:dj00aiZpPTFqUDJJQjNOMWZMeCZzPWNvbnN1bWVyc2VjcmV0Jng9ODI-"}
+    headers = {"Content-Type": "application/json","User-Agent": "Yahoo AppID:#{Rails.application.credentials.yahoo_api_key}"}
     response = http.post(uri.path, params, headers)
     word_arr = Array.new
     if response.body.present? && response.code == '200'
@@ -29,16 +29,33 @@ class HomeController < ApplicationController
 
   def top
     @genre = nil
-    @genre_array = nil
     naive = NaiveBayes.load('machine_learning.rb')
-    test_data = split_word(params[:search]) # 名詞のみ配列で抽出
-    if test_data.present?
-      @genre_array = naive.classify(*test_data)
-      case @genre_array[0]
+    word_data = split_word(params[:search]) # 名詞のみ配列で抽出
+    if word_data.present?
+      genre_array = naive.classify(*word_data)
+      case genre_array[0].to_s
       when 'vrgame'
         @genre = "VRゲーム"
       when 'highFantasy'
         @genre = "ハイファンタジー"
+      when 'universe'
+        @genre = "宇宙"
+      when 'panic'
+        @genre = "パニック"
+      when 'fantasy_science'
+        @genre = "空想科学"
+      when 'lowfantasy'
+        @genre = "ローファンタジー"
+      when 'pure_literature'
+        @genre = "純文学"
+      when 'isekai_romance'
+        @genre = "恋愛（異世界）"
+      when 'realworld_romance'
+        @genre = "恋愛（現実）"
+      when 'human_drama'
+        @genre = "ヒューマンドラマ"
+      when 'detective'
+        @genre = "推理"
       end
     end
   end
