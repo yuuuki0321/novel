@@ -29,10 +29,17 @@ class HomeController < ApplicationController
 
   def top
     @genre = nil
+    @genre_array = nil
     naive = NaiveBayes.load('machine_learning.rb')
     test_data = split_word(params[:search]) # 名詞のみ配列で抽出
     if test_data.present?
-      @genre = naive.classify(*test_data)
+      @genre_array = naive.classify(*test_data)
+      case @genre_array[0]
+      when 'vrgame'
+        @genre = "VRゲーム"
+      when 'highFantasy'
+        @genre = "ハイファンタジー"
+      end
     end
   end
 end
