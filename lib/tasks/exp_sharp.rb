@@ -25,7 +25,7 @@ def split_word(text)
   word_arr
 end
 
-bayes = NaiveBayes.new(:vrgame, :universe, :panic, :fantasy_science, :lowfantasy, :highFantasy)
+bayes = NaiveBayes.new(:vrgame, :universe, :panic, :fantasy_science, :lowfantasy, :highFantasy, :pure_literature)
 
 sub_vrgames = NovelInformation.where(sub_genre: "vrgame")
 sub_universes = NovelInformation.where(sub_genre: "universe")
@@ -33,6 +33,7 @@ sub_panic = NovelInformation.where(sub_genre: "panic")
 sub_fantasy_science = NovelInformation.where(sub_genre: "fantasy_science")
 sub_lowfantasy = NovelInformation.where(sub_genre: "lowfantasy")
 sub_highFantasy = NovelInformation.where(sub_genre: "highFantasy")
+sub_pure_literature = NovelInformation.where(sub_genre: "pure_literature")
 
 
 sub_vrgames.each do |vrgame|
@@ -64,6 +65,13 @@ sub_highFantasy.each do |highFantasy|
   word_array = split_word(highFantasy.synopsis)
   bayes.train(:highFantasy, *word_array)
 end
+
+sub_pure_literature.each do |pure_literature|
+  word_array = split_word(pure_literature.synopsis)
+  bayes.train(:pure_literature, *word_array)
+end
+
+
 
 
 # 学習データを保存
