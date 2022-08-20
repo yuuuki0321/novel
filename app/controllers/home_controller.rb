@@ -16,6 +16,9 @@ class HomeController < ApplicationController
     headers = {"Content-Type": "application/json","User-Agent": "Yahoo AppID:#{Rails.application.credentials.yahoo_api_key}"}
     response = http.post(uri.path, params, headers)
     word_arr = Array.new
+    puts "1"*60
+    puts response.body
+    puts "1"*60
     if response.body.present? && response.code == '200'
       body_json = JSON.parse(response.body)
       body_json["result"]["tokens"].each do |token|
@@ -31,8 +34,14 @@ class HomeController < ApplicationController
     @genre = nil
     naive = NaiveBayes.load('machine_learning.rb')
     word_data = split_word(params[:search]) # 名詞のみ配列で抽出
+    puts "2"*60
+    puts word_data
+    puts "2"*60
     if word_data.present?
       genre_array = naive.classify(*word_data)
+      puts "3"*60
+      puts genre_array
+      puts "3"*60
       case genre_array[0].to_s
       when 'vrgame'
         @genre = "VRゲーム"
