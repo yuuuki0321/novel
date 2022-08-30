@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  
+
   def split_word(text)
     return if text.blank?
     uri = URI.parse 'https://jlp.yahooapis.jp/MAService/V2/parse'
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
       "method": "jlp.maservice.parse",
       "params": {
         "q": text
-      } 
+      }
     }.to_json
     headers = {"Content-Type": "application/json","User-Agent": "Yahoo AppID:#{Rails.application.credentials.yahoo_api_key}"}
     response = http.post(uri.path, params, headers)
