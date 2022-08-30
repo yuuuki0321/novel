@@ -6,7 +6,7 @@
   
   <div class="center">
     <%= form_with method: :get, local: true do |form| %>
-      <%= form.text_area :search, maxlength: 1000, class: 'form-control', size: "40x15" %>
+      <%= form.text_area :search, maxlength: 850, class: 'form-control', size: "40x15" %>
       <br>
       <%= form.submit 'ジャンル判定を行う', name: nil, class: 'center'  %>
     <% end %>
